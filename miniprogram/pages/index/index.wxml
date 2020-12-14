@@ -1,0 +1,12 @@
+<!--index.wxml-->
+<view class="container">
+  <view id="add" bindtap="addNewTap">
+    <view>添加图书</view>
+  </view>
+  <view id="search" bindtap="searchTap">
+    <view>搜索</view>
+  </view>
+
+
+
+</view>

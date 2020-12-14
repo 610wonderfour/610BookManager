@@ -1,0 +1,39 @@
+/**index.wxss**/
+page{
+  height: 100%;
+  width: 100%;
+}
+
+.container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#add{
+  height: 100rpx;
+  width: 150rpx;
+  border-radius: 20rpx;
+  background-color: rgb(31, 31, 255);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#search{
+  height: 200rpx;
+  width: 300rpx;
+  border-radius: 20rpx;
+  background-color: rgb(255, 102, 31);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60rpx;
+
+}
