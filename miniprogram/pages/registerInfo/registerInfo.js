@@ -1,4 +1,7 @@
 // pages/registerInfo/registerInfo.js
+const app = getApp()
+
+
 Page({
 
   /**
@@ -32,9 +35,10 @@ Page({
 
     new Promise((resolve, reject) => {
       wx.request({
-        url: 'url',
+        url: app.globalData.url + 'RegisterKeeper/',
         method: 'POST',
         header: {
+          'content-type': 'application/x-www-form-urlencoded',
 
         },
         data: {
@@ -49,6 +53,11 @@ Page({
       })
     }).then(res => {
       console.log(res);
+      wx.showToast({
+        title: '注册成功',
+        icon: 'success'
+      })
+      this.onLoad();
 
     }).catch(err => {
       console.log(err);

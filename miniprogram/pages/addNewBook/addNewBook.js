@@ -1,5 +1,6 @@
 // pages/addNewBook/addNewBook.js
 const app = getApp()
+const util = require('../../utils/util')
 
 Page({
 
@@ -7,12 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bookId: String,
-    bookName: String,
-    boughtTime: '2020-12-17',
-    buyer: String,
-    bookLocation: String,
-    bookCopyId: String,
+    boughtTime: String,
 
 
   },
@@ -24,12 +20,11 @@ Page({
   },
 
   addBook: function(e){
-    // console.log(e.detail.value);
     let data = e.detail.value;
-    // console.log(data.boughtTime);
+    console.log(data);
 
     new Promise((resolve, reject) => {
-      console.log(data);
+      // console.log(data);
       wx.request({
         url: app.globalData.url + 'AddNewBook/',
         method: 'POST',
@@ -37,7 +32,6 @@ Page({
           'content-type': 'application/x-www-form-urlencoded',
         },
         data: {
-          'bookId': data.bookId,
           'bookName': data.bookName,
           'price': data.price,
           'boughtTime': data.boughtTime,
@@ -52,6 +46,10 @@ Page({
       })
     }).then(res => {
       console.log(res);
+      wx.showToast({
+        title: '添加图书成功',
+        icon: 'success',
+      })
 
     })
     
@@ -61,7 +59,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let now = util.parseDate(new Date())
+    console.log(now);
+    this.setData({
+      boughtTime: now,
+    })
   },
 
   /**
