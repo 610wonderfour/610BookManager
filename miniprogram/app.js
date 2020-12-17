@@ -15,5 +15,7 @@ App({
     }
 
     this.globalData = {}
+    this.globalData.url = 'http://106.52.12.54/bookManage/'
+    
   }
 })

@@ -1,0 +1,46 @@
+<!--pages/registerInfo/registerInfo.wxml-->
+<view class="container">
+
+  <form bindsubmit="registerInfoSubmit">
+
+    <view class="info-input">
+    
+      <view class="input-title">
+        请输入所要注册的图书保管人信息：
+      </view>
+
+      <view class="input-item">
+        <view>借阅者姓名</view>
+        <input name="name" placeholder="请输入借阅者姓名" />
+      </view>
+
+      <view class="input-item">
+        <view>请选择借阅者类型</view>
+        <radio-group name="regType" bindchange="typeChange">
+          <view wx:for="{{typeArr}}" wx:key="type">
+            <radio value="{{item}}">
+              <view>{{item}}</view>
+            </radio>
+          </view>
+        </radio-group>
+      </view>
+
+      <view class="input-item" wx:if="{{isStu}}">
+        <view>学号</view>
+        <input name="stuId" placeholder="请输入借阅者学号" />
+      </view>
+
+      <view class="input-item">
+        <view>电话号码</view>
+        <input name="phoneNumber" placeholder="请输入借阅人联系电话" />
+      </view>
+
+
+  </view>
+
+  <button type="primary" form-type="submit" style="margin-top:50rpx;">添加借阅者</button>
+
+
+  </form>
+
+</view>

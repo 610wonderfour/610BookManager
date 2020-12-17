@@ -1,2 +1,59 @@
 <!--pages/addNewBook/addNewBook.wxml-->
-<text>pages/addNewBook/addNewBook.wxml</text>
+<view class="container">
+
+<form bindsubmit="addBook">
+  <view class="info-input">
+    
+      <view class="input-title">
+        请输入所添加的图书信息：
+      </view>
+
+      <view class="input-item">
+        <view>图书编号</view>
+        <input name="bookId" placeholder="请输入图书编号" />
+      </view>
+
+      <view class="input-item">
+        <view>名称</view>
+        <input name="bookName" placeholder="请输入图书名称" />
+      </view>
+
+      <view class="input-item">
+        <view>价格</view>
+        <input name="price" placeholder="请输入图书价格" />
+      </view>
+
+      <view class="input-item">
+        <view>选择购买时间</view>
+        <!-- <input name="boughtTime" placeholder="请输入图书购买时间" /> -->
+        <picker mode="date" name="boughtTime" value="{{boughtTime}}" start="1999-01-01" end="2030-12-12" bindchange="datePickerChange">
+          <button type="primary">选择购买时间</button>
+        </picker>
+        <view>当前日期选择{{boughtTime}}</view>
+      </view>
+
+      <view class="input-item">
+        <view>购买人</view>
+        <input name="buyer" placeholder="请输入图书购买人" />
+      </view>
+
+      <view class="input-item">
+        <view>图书位置</view>
+        <input name="bookLocation" placeholder="请输入图书所要放置的位置" />
+      </view>
+
+      <view class="input-item">
+        <view>所属组号</view>
+        <input name="groupId" placeholder="请输入图书所属小组组号" />
+      </view>
+
+
+  </view>
+
+  <button type="primary" form-type="submit" style="margin-top:50rpx;">添加图书</button>
+
+</form>
+  
+
+
+</view>

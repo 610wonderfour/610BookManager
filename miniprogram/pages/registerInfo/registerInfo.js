@@ -1,60 +1,58 @@
-// pages/addNewBook/addNewBook.js
-const app = getApp()
-
+// pages/registerInfo/registerInfo.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    bookId: String,
-    bookName: String,
-    boughtTime: '2020-12-17',
-    buyer: String,
-    bookLocation: String,
-    bookCopyId: String,
+    typeArr: ['教师', '学生'],
+    isStu: false,
+
 
 
   },
 
-  datePickerChange: function(e){
-    this.setData({
-      boughtTime: e.detail.value,
-    })
+  typeChange: function(e) {
+    console.log(e);
+    if(e.detail.value === '学生'){
+      this.setData({
+        isStu: true,
+      })
+    } else {
+      this.setData({
+        isStu: false,
+      })
+    }
+
   },
 
-  addBook: function(e){
-    // console.log(e.detail.value);
+  registerInfoSubmit: function(e){
     let data = e.detail.value;
-    // console.log(data.boughtTime);
+    console.log(data);
 
     new Promise((resolve, reject) => {
-      console.log(data);
       wx.request({
-        url: app.globalData.url + 'AddNewBook/',
+        url: 'url',
         method: 'POST',
         header: {
-          'content-type': 'application/x-www-form-urlencoded',
+
         },
         data: {
-          'bookId': data.bookId,
-          'bookName': data.bookName,
-          'price': data.price,
-          'boughtTime': data.boughtTime,
-          'buyer': data.buyer,
-          'bookLocation': data.bookLocation,
-          'groupId': data.groupId,
+          'name': data.name,
+          'regType': data.regType,
+          'phoneNumber': data.phoneNumber,
+          'stuId': data.stuId,
 
         },
         success: res => resolve(res),
-        fail: error => reject(error)
-        
+        fail: err => resolve(err)
       })
     }).then(res => {
       console.log(res);
 
+    }).catch(err => {
+      console.log(err);
     })
-    
   },
 
   /**

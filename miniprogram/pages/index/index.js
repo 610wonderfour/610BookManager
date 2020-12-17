@@ -23,6 +23,12 @@ Page({
     })
   },
 
+  registerTap: function() {
+    wx.navigateTo({
+      url: '../registerInfo/registerInfo',
+    })
+  },
+
   searchTap: function() {
     wx.navigateTo({
       url: '../search/search',
