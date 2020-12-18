@@ -5,6 +5,6 @@
 }
 
 .separate-line2{
-  width: 92%;
+  width: 100%;
   border: 0.6px solid #dadada;
 }

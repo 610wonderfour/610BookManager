@@ -1,1 +1,13 @@
 /* pages/bookInfo/bookDetail/bookDetail.wxss */
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 20rpx 60rpx;
+  overflow-y: scroll;
+}
+
+#attr-list view{
+  width: 300rpx;
+}

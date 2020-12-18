@@ -1,17 +1,67 @@
 // pages/bookInfo/bookDetail/bookDetail.js
+const app = getApp()
+const util = require('../../../utils/util')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    documentId: String,
+    attrList: Array,
 
+
+  },
+
+  initBookDetail(){
+    new Promise((resolve, reject) => {
+      wx.request({
+        url: app.globalData.url + 'BookDetail/',
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        data: {
+          documentId: wx.getStorageSync('selectDocumentId'),
+        },
+        success: res => resolve(res),
+        fail: err => reject(err)
+      })
+    }).then(res => {
+      console.log(res);
+      let temp = [];
+      for(let key in res.data){
+        temp.push({
+          attr: util.attributeHash(key),
+          val: util.valueHash(res.data[key])
+        })
+      }
+      if(temp['保管人']==='onshelf'){
+        temp['状态'] = '空闲';
+        temp['保管人'] = '暂无';
+      } else{
+        temp['状态'] = '外借中';
+      }
+
+      console.log(temp);
+      this.setData({
+        attrList: temp
+      })
+
+    }).catch(err => {
+      console.log(err);
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      documentId: wx.getStorageSync('selectDocumentId')
+    })
+    this.initBookDetail();
 
   },
 

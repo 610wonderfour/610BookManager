@@ -29,6 +29,17 @@ Page({
       })
     }).then(res => {
       console.log(res);
+      let temp = [];
+      res.data.forEach(item => {
+        temp.push({
+          documentId: item.split(';')[0],
+          isLent: item.split(';')[1] === 'true' ? '是':'否'
+        })
+      })
+
+      this.setData({
+        bookList: temp
+      })
 
     }).catch(err => {
       console.log(err);
@@ -39,6 +50,10 @@ Page({
     let documentId = e.currentTarget.dataset.item.documentId;
     console.log(documentId);
     wx.setStorageSync('selectDocumentId', documentId);
+
+    wx.navigateTo({
+      url: './bookDetail/bookDetail',
+    })
     
   },
 

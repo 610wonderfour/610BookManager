@@ -1,2 +1,11 @@
 <!--pages/bookInfo/bookDetail/bookDetail.wxml-->
-<text>pages/bookInfo/bookDetail/bookDetail.wxml</text>
+<view class="container">
+  <view style="align-self:center;color:red;font-size:40rpx;font-weight:700;">{{documentId}}</view>
+
+  <view id="attr-list" wx:for="{{attrList}}" wx:key="index">
+    <view style="font-weight:600;font-size:30rpx;">{{item.attr}}</view>
+    <view style="border:0.6px solid gray;margin-bottom:20rpx;border-radius:10rpx;">{{item.val}}</view>
+  </view>
+
+
+</view>
