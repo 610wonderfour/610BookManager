@@ -1,7 +1,7 @@
 <!--pages/addNewBook/addNewBook.wxml-->
 <view class="container">
 
-<form bindsubmit="addBook">
+<form bindsubmit="addBookSubmit" bindreset="addBookReset">
   <view class="info-input">
     
       <view class="input-title">
@@ -46,6 +46,7 @@
   </view>
 
   <button type="primary" form-type="submit" style="margin-top:50rpx;">添加图书</button>
+  <button type="warn" form-type="reset" style="margin-top:50rpx;width:300rpx;background-color:#afafaf;">清空输入</button>
 
 </form>
   

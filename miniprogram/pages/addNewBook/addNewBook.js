@@ -19,7 +19,7 @@ Page({
     })
   },
 
-  addBook: function(e){
+  addBookSubmit: function(e){
     let data = e.detail.value;
     console.log(data);
 
@@ -53,6 +53,10 @@ Page({
 
     })
     
+  },
+
+  addBookReset: function(e){
+    this.onLoad();
   },
 
   /**

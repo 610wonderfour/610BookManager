@@ -55,13 +55,16 @@ Page({
       console.log(res);
       wx.showToast({
         title: '注册成功',
-        icon: 'success'
+        icon: 'success',
       })
-      this.onLoad();
 
     }).catch(err => {
       console.log(err);
     })
+  },
+
+  registerInfoReset: function(e){
+    
   },
 
   /**
