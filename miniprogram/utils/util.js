@@ -14,6 +14,7 @@ module.exports = {
       case 'boughtTime': return '购买时间';
       case 'buyer': return '购买人';
       case 'keepTime': return '借阅截止日期';
+      case 'booker': return '预约人';
     }
   },
   valueHash(val){

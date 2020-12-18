@@ -20,7 +20,6 @@
 
       <view class="input-item">
         <view>选择购买时间</view>
-        <!-- <input name="boughtTime" placeholder="请输入图书购买时间" /> -->
         <picker mode="date" name="boughtTime" value="{{boughtTime}}" start="1999-01-01" end="2030-12-12" bindchange="datePickerChange">
           <button type="primary">选择购买时间</button>
         </picker>

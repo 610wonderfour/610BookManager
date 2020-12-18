@@ -1,0 +1,14 @@
+/* pages/bookInfo/bookDetail/lendBook/lendBook.wxss */
+.container{
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.separate-line1{
+  border: 0.6px solid #a8a8a8;
+}
+
+#lend-form button{
+  margin-top: 50rpx;
+}

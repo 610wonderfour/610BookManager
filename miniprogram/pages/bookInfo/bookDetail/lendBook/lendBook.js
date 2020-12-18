@@ -1,5 +1,6 @@
-// pages/bookInfo/bookInfo.js
-const app =getApp()
+// pages/bookInfo/bookDetail/lendBook/lendBook.js
+const app = getApp()
+const request = require('../../../../utils/request')
 
 
 Page({
@@ -8,53 +9,59 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bookName: '610传奇',
-    bookList: Array,
+    keeperList: Array,
+    keepTime: String,
+
 
   },
 
-  initBookInfo() {
+  datePickerChange(e){
+    console.log(e.detail.value);
+    this.setData({
+      keepTime: e.detail.value,
+    })
+  },
+
+
+  lendSubmit(e){
+    let keeper = e.detail.value.keeper;
+    let keepTime = e.detail.value.keepTime;
+    console.log('所选保管人：', keeper);
+    console.log('截止日期：', keepTime)
     new Promise((resolve, reject) => {
       wx.request({
-        url: app.globalData.url + 'BookInfo/',
+        url: app.globalData.url + 'LendBook/',
         method: 'POST',
         header:{
           'content-type': 'application/x-www-form-urlencoded',
         },
-        data: {
-          name: wx.getStorageSync('selectBookName'),
+        data:{
+          documentId: wx.getStorageSync('selectDocumentId'),
+          keeper: keeper,
+          keepTime: keepTime,
         },
         success: res => resolve(res),
         fail: err => reject(err)
       })
     }).then(res => {
       console.log(res);
-      let temp = [];
-      res.data.forEach(item => {
-        temp.push({
-          documentId: item.split(';')[0],
-          isLent: item.split(';')[1] === 'true' ? '是':'否'
+      wx.showToast({
+        title: '借阅成功！',
+        icon: 'success',
+        success: wx.navigateBack({
+          delta: 1,
         })
       })
 
-      this.setData({
-        bookList: temp
-      })
 
     }).catch(err => {
       console.log(err);
     })
+
   },
 
-  getBookDetail(e){
-    let documentId = e.currentTarget.dataset.item.documentId;
-    console.log(documentId);
-    wx.setStorageSync('selectDocumentId', documentId);
+  keeperChange(e){
 
-    wx.navigateTo({
-      url: './bookDetail/bookDetail',
-    })
-    
   },
 
   /**
@@ -75,11 +82,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      bookName: wx.getStorageSync('selectBookName')
-    })
-    this.initBookInfo();
+    request.initKeeperList().then(res => {
+      console.log(res);
+      let temp = [];
+      for(let key in res.data){
+        let attr = res.data[key];
+        temp.push({
+          name: key,
+          hasBook: attr.hasBook[0] === 'true' ? true:false,
+        })
+      }
 
+      this.setData({
+        keeperList: temp
+      })
+
+    }).catch(err => {
+      console.log(err);
+    })
   },
 
   /**

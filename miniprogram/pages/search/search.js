@@ -28,7 +28,7 @@ Page({
         fail: err => reject(err) 
       })
     }).then(res => {
-      console.log(res);
+      console.log('库存图书种类列表', res);
       let data = res.data;
       let temp = [];
       for(let key in data){
@@ -92,9 +92,9 @@ Page({
   },
 
   getBookInfo(e){
-    console.log(e);
+    // console.log(e);
     let name = e.currentTarget.dataset.item.name;
-    console.log(name);
+    // console.log(name);
     wx.setStorageSync('selectBookName', name);
 
     wx.navigateTo({
@@ -114,7 +114,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initBookList();
+    
     
   },
 
@@ -130,6 +130,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.initBookList();
 
   },
 

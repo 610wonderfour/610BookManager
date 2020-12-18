@@ -1,5 +1,5 @@
 <!--pages/bookInfo/bookInfo.wxml-->
-<view class="container" style="width:100%;display:flex;flex-direction:column;padding:0 30rpx;">
+<view class="container" style="width:100%;display:flex;flex-direction:column;padding:0 30rpx;overflow-y:scroll;">
   <view style="align-self:flex-start;font-size:50rpx;">{{bookName}}</view>
 
   <view style="width:100%;display:flex;justify-content:space-between;color:blue;">

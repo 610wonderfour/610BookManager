@@ -2,19 +2,40 @@
 <view class="container">
   <view>欢迎来到610图书管理系统！</view>
 
-  <view class="content">
-    <view id="add" bindtap="addNewTap">
-      <view>添加图书</view>
-    </view>
-    
-    <view id="register" bindtap="registerTap">
-      <view>注册借阅者信息</view>
+<view style="display:flex;flex-direction:row;justify-content:space-around;">
+
+  <view style="display:flex;flex-direction:column;align-items:center;">
+    <view style="font-size:40rpx;font-weight:600;">操作图书</view>
+    <view>
+      <button id="add" bindtap="addNewTap" style="margin-top:94rpx;">
+        <view>添加图书</view>
+      </button>
+
+      <button id="search" bindtap="searchTap">
+        <view>搜索图书</view>
+      </button>
+
     </view>
 
-    <view id="search" bindtap="searchTap">
-      <view>搜索</view>
-    </view>
   </view>
+
+  <view style="display:flex;flex-direction:column;align-items:center;">
+    <view style="font-size:40rpx;font-weight:600;">操作保管人（借阅者）</view>
+    <view>
+      <button id="register" bindtap="registerTap">
+        <view>注册保管人信息</view>
+      </button>
+
+      <button id="keeper" bindtap="keeperTap">
+        <view>查看已注册保管人</view>
+      </button>
+
+    </view>
+
+  </view>
+
+
+</view>
   
 
 

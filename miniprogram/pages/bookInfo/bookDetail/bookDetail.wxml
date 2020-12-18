@@ -2,10 +2,28 @@
 <view class="container">
   <view style="align-self:center;color:red;font-size:40rpx;font-weight:700;">{{documentId}}</view>
 
-  <view id="attr-list" wx:for="{{attrList}}" wx:key="index">
-    <view style="font-weight:600;font-size:30rpx;">{{item.attr}}</view>
-    <view style="border:0.6px solid gray;margin-bottom:20rpx;border-radius:10rpx;">{{item.val}}</view>
+  <view style="width:100%;position:relative;margin-top:40rpx;">
+
+  
+    <view id="attribute" style="width:50%;float:left;">
+    
+      <view id="attr-list" wx:for="{{attrList}}" wx:key="index">
+        <view style="font-weight:600;font-size:30rpx;">{{item.attr}}</view>
+        <view style="border:0.6px solid gray;margin-bottom:20rpx;border-radius:10rpx;">{{item.val}}</view>
+      </view>
+
+    </view>
+
+    <view id="operate" style="float:right;padding:30rpx 0;">
+      <button disabled="{{isLent}}" type="primary" bindtap="lendBook">图书外借</button>
+      <button disabled="{{!isLent}}" type="primary" bindtap="bookOrder">外借预约</button>
+      <button disabled="{{!isLent}}" type="primary" bindtap="getKeeperInfo">查看当前保管人信息</button>
+      
+
+    </view>
+
   </view>
+
 
 
 </view>

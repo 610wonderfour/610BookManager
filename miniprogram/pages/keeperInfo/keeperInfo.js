@@ -1,4 +1,4 @@
-// pages/delete/delete.js
+// pages/keeperInfo/keeperInfo.js
 Page({
 
   /**

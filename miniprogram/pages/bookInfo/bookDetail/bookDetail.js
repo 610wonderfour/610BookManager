@@ -10,6 +10,8 @@ Page({
   data: {
     documentId: String,
     attrList: Array,
+    isLent: Boolean,
+
 
 
   },
@@ -29,20 +31,46 @@ Page({
         fail: err => reject(err)
       })
     }).then(res => {
-      console.log(res);
+      console.log('图书属性参数', res);
       let temp = [];
       for(let key in res.data){
-        temp.push({
-          attr: util.attributeHash(key),
-          val: util.valueHash(res.data[key])
-        })
+        if(key === 'keeper'){
+          if(res.data[key] === 'onshelf'){
+            temp.push({
+              attr: '状态',
+              val: '空闲'
+            })
+            temp.push({
+              attr: '保管人',
+              val: '暂无'
+            })
+          } else{
+            temp.push({
+              attr: '状态',
+              val: '外借中'
+            })
+            temp.push({
+              attr: '保管人',
+              val: res.data[key]
+            })
+          }
+
+        } else if(key === 'isLent'){
+          this.setData({
+            isLent: res.data[key] === 'true' ? true:false
+          })
+          temp.push({
+            attr: util.attributeHash(key),
+            val: util.valueHash(res.data[key])
+          })
+        } else{
+          temp.push({
+            attr: util.attributeHash(key),
+            val: util.valueHash(res.data[key])
+          })
+        }
       }
-      if(temp['保管人']==='onshelf'){
-        temp['状态'] = '空闲';
-        temp['保管人'] = '暂无';
-      } else{
-        temp['状态'] = '外借中';
-      }
+
 
       console.log(temp);
       this.setData({
@@ -54,14 +82,25 @@ Page({
     })
   },
 
+  lendBook(){
+    wx.navigateTo({
+      url: './lendBook/lendBook',
+    })
+  },
+
+  bookOrder(){
+
+  },
+  
+  getKeeperInfo(){
+
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      documentId: wx.getStorageSync('selectDocumentId')
-    })
-    this.initBookDetail();
+    
 
   },
 
@@ -76,6 +115,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      documentId: wx.getStorageSync('selectDocumentId'),
+    })
+    this.initBookDetail();
 
   },
 

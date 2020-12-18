@@ -1,0 +1,42 @@
+<!--pages/bookInfo/bookDetail/lendBook/lendBook.wxml-->
+<view class="container">
+  <view style="">确认借阅订单</view>
+
+  <view style="width:100%">
+    <view style="font-size:50rpx;">请选择已注册的保管人</view>
+    
+    <view style="display:flex;justify-content:space-between;padding:0 40rpx;color:blue;">
+      <view>姓名</view>
+      <view>状态</view>
+      <view>选择</view>
+    </view>
+
+    <view class="separate-line1"></view>
+
+  <form id="lend-form" bindsubmit="lendSubmit" bindreset="">
+    <radio-group name="keeper" bindchange="keeperChange">
+      <view wx:for="{{keeperList}}" wx:key="name" style="display:flex;justify-content:space-between;padding:0 40rpx;">
+        <view>{{item.name}}</view>
+        <view wx:if="{{!item.hasBook}}">允许借书</view>
+        <view wx:if="{{item.hasBook}}">禁止借书</view>
+        <radio value="{{item.name}}" disabled="{{item.hasBook}}"></radio>
+      </view>
+
+    </radio-group>
+
+    <view class="input-item" style="margin-top:30rpx;">
+      <view>选择借书截止时间</view>
+      <picker mode="date" name="keepTime" start="1999-01-01" end="2030-12-12" bindchange="datePickerChange">
+        <button type="primary">选择截止时间</button>
+      </picker>
+      <view>当前截止日期选择{{keepTime}}</view>
+    </view>
+
+    <button type="primary" form-type="submit">确认借书</button>
+    <button type="warn" form-type="reset" style="background-color:#d1d1d1;">重置</button>
+  </form>
+
+  </view>
+
+
+</view>

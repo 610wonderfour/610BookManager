@@ -1,0 +1,29 @@
+<!--pages/keeperInfo/keeperInfo.wxml-->
+<view class="container">
+  <view style="">
+    确认预约订单
+  </view>
+
+  <view style="width:100%">
+    <view style="font-size:50rpx;">请选择已注册的保管人</view>
+    
+    <view style="display:flex;justify-content:space-between;padding:0 40rpx;color:blue;">
+      <view>姓名</view>
+      <view>状态</view>
+      <view>操作</view>
+    </view>
+
+    <view class="separate-line1"></view>
+
+    <view wx:for="{{keeperList}}" wx:key="name" style="display:flex;justify-content:space-between;padding:0 40rpx;">
+      <view>{{item.name}}</view>
+      <view wx:if="{{!item.hasBook}}">允许借书</view>
+      <view wx:if="{{item.hasBook}}">禁止借书</view>
+      <view>详细信息</view>
+    </view>
+  
+
+  </view>
+
+
+</view>
