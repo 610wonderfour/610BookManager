@@ -35,6 +35,12 @@ Page({
     })
   },
 
+  deleteTap: function() {
+    wx.navigateTo({
+      url: '../delete/delete',
+    })
+  },
+
   onGetUserInfo: function(e) {
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({

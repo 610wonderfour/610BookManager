@@ -6,6 +6,7 @@
     <view id="add" bindtap="addNewTap">
       <view>添加图书</view>
     </view>
+    
     <view id="register" bindtap="registerTap">
       <view>注册借阅者信息</view>
     </view>
