@@ -12,46 +12,59 @@
 .content{
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-top: 200rpx;
+  flex-wrap: wrap; /*换行模式*/
 }
 
+
 #add{
-  height: 100rpx;
-  width: 200rpx;
-  border-radius: 20rpx;
+  height: 150rpx;
+  width: 300rpx;
+  border-radius: 10%;
   background-color: rgb(31, 31, 255);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin-top: 40rpx;
+  margin-right: 40rpx;
 }
 
 #register{
-  height: 100rpx;
-  width: 250rpx;
-  border-radius: 20rpx;
+  height: 150rpx;
+  width: 300rpx;
+  border-radius: 10%;
   background-color: rgb(250, 21, 238);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 40rpx;
-
 }
 
 #search{
-  height: 300rpx;
+  height: 150rpx;
   width: 300rpx;
-  border-radius: 50%;
+  border-radius: 10%;
   background-color: rgb(255, 102, 31);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 60rpx;
+  margin-top: 40rpx;
+}
 
+#delete{
+  height: 100rpx;
+  width: 150rpx;
+  border-radius: 20rpx;
+  background-color: crimson;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60rpx;
 }
