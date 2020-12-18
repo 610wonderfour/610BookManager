@@ -4,6 +4,7 @@
     "pages/addNewBook/addNewBook",
     "pages/search/search",
     "pages/bookInfo/bookInfo",
+    "pages/bookInfo/bookDetail/bookDetail",
     "pages/registerInfo/registerInfo"
   ],
   "window": {

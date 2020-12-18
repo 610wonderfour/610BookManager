@@ -7,13 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bookList: [
-      {
-        name: '三国演义',
-        left_num: 3,
-        lend_num: 14
-      },
-    ],
+    bookList: [],
     boughtTime: '',
     
 
@@ -34,7 +28,7 @@ Page({
         fail: err => reject(err) 
       })
     }).then(res => {
-      console.log(res.data);
+      console.log(res);
       let data = res.data;
       let temp = [];
       for(let key in data){
@@ -54,14 +48,55 @@ Page({
   },
 
   getBookList(e) {
-    let info = e.detail.value;
-    console.log(info);
+    let searchInfo = e.detail.value;
+    let data = {};
+    for(let key in searchInfo){
+      if(searchInfo[key]!==""){
+        data[key] = searchInfo[key];
+      }
+    }
+    console.log(data);
+    
+    new Promise((resolve, reject) => {
+      wx.request({
+        url: app.globalData.url + 'BookList/',
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        data: data,
+        success: res => resolve(res),
+        fail: err => reject(err)
+      })
+    }).then(res => {
+      console.log(res);
+      let data = res.data;
+      let temp = [];
+      for(let key in data){
+        temp.push({
+          name: key,
+          left_num: data[key][1],
+          lend_num: data[key][0]
+        });
+      }
+      console.log(temp);
+      this.setData({
+        bookList: temp,
+      })
+    }).catch(err => {
+      console.log(err);
+    })
     
     
 
   },
 
-  getBookInfo(){
+  getBookInfo(e){
+    console.log(e);
+    let name = e.currentTarget.dataset.item.name;
+    console.log(name);
+    wx.setStorageSync('selectBookName', name);
+
     wx.navigateTo({
       url: '../bookInfo/bookInfo',
     })
@@ -80,12 +115,14 @@ Page({
    */
   onLoad: function (options) {
     this.initBookList();
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
 
   },
 
