@@ -1,6 +1,6 @@
-<!--pages/bookInfo/bookDetail/lendBook/lendBook.wxml-->
+<!--pages/bookInfo/bookDetail/bookOrder/bookOrder.wxml-->
 <view class="container">
-  <view style="">确认借阅订单</view>
+  <view style="">确认预约订单</view>
 
   <view style="width:100%">
     <view style="font-size:50rpx;">请选择已注册的保管人</view>
@@ -13,12 +13,12 @@
 
     <view class="separate-line1"></view>
 
-  <form id="lend-form" bindsubmit="lendSubmit" bindreset="">
+  <form id="book-form" bindsubmit="bookSubmit" bindreset="">
     <radio-group name="keeper" bindchange="keeperChange">
       <view wx:for="{{keeperList}}" wx:key="name" style="display:flex;justify-content:space-between;padding:0 40rpx;">
         <view>{{item.name}}</view>
-        <view wx:if="{{!item.hasBook && !item.hasOrder}}">允许借书</view>
-        <view wx:if="{{item.hasBook || item.hasOrder}}">禁止借书</view>
+        <view wx:if="{{!item.hasBook && !item.hasOrder}}">允许预约</view>
+        <view wx:if="{{item.hasBook || item.hasOrder}}">禁止预约</view>
         <radio value="{{item.name}}" disabled="{{item.hasBook || item.hasOrder}}"></radio>
       </view>
 
@@ -40,3 +40,4 @@
 
 
 </view>
+

@@ -55,8 +55,9 @@
     <view style="font-size:40rpx;">库存图书列表</view>
     <view style="display:flex;justify-content:space-between;color:blue;padding:0 30rpx;">
       <view>图书名称</view>
-      <view>剩余数量</view>
-      <view>已借出数量</view>
+      <view>空闲</view>
+      <view>已借出</view>
+      <view>已预约</view>
       <view>操作</view>
     </view>
     <view class="separate-line1"></view>

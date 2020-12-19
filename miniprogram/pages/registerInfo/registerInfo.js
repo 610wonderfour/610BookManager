@@ -56,6 +56,9 @@ Page({
       wx.showToast({
         title: '注册成功',
         icon: 'success',
+        success: function(){
+          
+        }
       })
 
     }).catch(err => {

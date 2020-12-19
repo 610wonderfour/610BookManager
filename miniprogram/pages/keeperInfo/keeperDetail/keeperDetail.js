@@ -1,8 +1,7 @@
-// pages/keeperInfo/keeperInfo.js
+// pages/keeperInfo/keeperDetail/keeperDetail.js
 const app = getApp()
-const request = require('../../utils/request')
-const util = require('../../utils/util')
-
+const request = require('../../../utils/request')
+const util = require('../../../utils/util')
 
 
 Page({
@@ -11,18 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    keeperList: Array,
 
-  },
-
-
-  getKeeperDetail(e){
-    console.log(e);
-    let keeper = e.currentTarget.dataset.item.name;
-    wx.setStorageSync('selectKeeper', keeper);
-    wx.navigateTo({
-      url: './keeperDetail/keeperDetail',
-    })
   },
 
   /**
@@ -43,26 +31,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    request.initKeeperList().then(res => {
-      console.log('保管人列表:', res);
-      let temp = [];
-      for(let key in res.data){
-        let attr = res.data[key];
-        temp.push({
-          name: key,
-          hasBook: attr.hasBook[0] === 'true' ? true:false,
-          hasOrder: attr.hasOrder[0] === 'true' ? true:false,
-        })
-      }
-
-      this.setData({
-        keeperList: temp
-      })
+    request.initKeeperDetail(wx.getStorageSync('selectKeeper')).then(res => {
+      console.log('保管人详细信息：', res);
 
     }).catch(err => {
-      console.log(err);
+      console.log(res);
     })
-
   },
 
   /**

@@ -1,1 +1,15 @@
 /* pages/keeperInfo/keeperInfo.wxss */
+.container{
+  width: 100%;
+  display: flex;
+}
+
+.separate-line1{
+  width: 100%;
+  border: 0.6px solid #bbbbbb;
+}
+
+.separate-line2{
+  width: 92%;
+  border: 0.6px solid #dadada;
+}

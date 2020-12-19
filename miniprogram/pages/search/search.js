@@ -34,8 +34,9 @@ Page({
       for(let key in data){
         temp.push({
           name: key,
+          lend_num: data[key][0],
           left_num: data[key][1],
-          lend_num: data[key][0]
+          book_num: data[key][2]
         });
       }
       console.log(temp);

@@ -11,6 +11,7 @@ Page({
     documentId: String,
     attrList: Array,
     isLent: Boolean,
+    isBooked: Boolean,
 
 
 
@@ -33,36 +34,46 @@ Page({
     }).then(res => {
       console.log('图书属性参数', res);
       let temp = [];
-      for(let key in res.data){
-        if(key === 'keeper'){
-          if(res.data[key] === 'onshelf'){
-            temp.push({
-              attr: '状态',
-              val: '空闲'
-            })
-            temp.push({
-              attr: '保管人',
-              val: '暂无'
-            })
-          } else{
-            temp.push({
-              attr: '状态',
-              val: '外借中'
-            })
-            temp.push({
-              attr: '保管人',
-              val: res.data[key]
-            })
-          }
+      this.setData({
+        isLent: res.data['isLent'] === 'true' ? true:false,
+      })
+      this.setData({
+        isBooked: res.data['isBooked'] === 'true' ? true:false,
+      })
 
-        } else if(key === 'isLent'){
-          this.setData({
-            isLent: res.data[key] === 'true' ? true:false
-          })
-          temp.push({
-            attr: util.attributeHash(key),
-            val: util.valueHash(res.data[key])
-          })
+      if(!this.data.isLent){
+        temp.push({
+          attr: '状态',
+          val: '空闲'
+        })
+      } else if(this.data.isLent && !this.data.isBooked){
+        temp.push({
+          attr: '状态',
+          val: '外借中'
+        })
+        temp.push({
+          attr: '保管人',
+          val: res.data['keeper']
+        })
+      } else{
+        temp.push({
+          attr: '状态',
+          val: '外借中 + 预约中'
+        })
+        temp.push({
+          attr: '保管人',
+          val: res.data['keeper']
+        })
+        temp.push({
+          attr: '预约人',
+          val: res.data['booker']
+        })
+
+      }
+
+      for(let key in res.data){
+        if(key==='keeper' || key==='booker' || key==='isLent' || key==='isBooked'){
+          continue;
         } else{
           temp.push({
             attr: util.attributeHash(key),
@@ -72,7 +83,7 @@ Page({
       }
 
 
-      console.log(temp);
+      console.log('图书属性参数', temp);
       this.setData({
         attrList: temp
       })
@@ -89,11 +100,31 @@ Page({
   },
 
   bookOrder(){
-
+    wx.navigateTo({
+      url: './bookOrder/bookOrder',
+    })
   },
   
   getKeeperInfo(){
 
+  },
+
+  handleBuyer(){
+    let that = this;
+    wx.showActionSheet({
+      itemList: this.data.isLent? ['我要借书', '我要预约']:['我要借书'],
+      success: function(res){
+        console.log(res);
+        switch(res.tapIndex){
+          case 0:
+            that.lendBook();
+            break;
+          case 1:
+            that.bookOrder();
+            break;
+        }
+      },
+    })
   },
 
   /**

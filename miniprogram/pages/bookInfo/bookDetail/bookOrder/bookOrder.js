@@ -1,8 +1,7 @@
-// pages/bookInfo/bookDetail/lendBook/lendBook.js
+// pages/bookInfo/bookDetail/bookOrder/bookOrder.js
 const app = getApp()
 const request = require('../../../../utils/request')
 const util = require('../../../../utils/util')
-
 
 Page({
 
@@ -32,27 +31,30 @@ Page({
     })
   },
 
-  periodPickerChange(e){
-    let month  = e.detail.value[0];
-    let day = e.detail.value[1];
-    // console.log(e.detail.value);
-    this.setData({
-      keepTime:  month + '个月' + day + '天',
-      keepTimeFormat: util.formatPeriod(month, day)
-    })
-    console.log('预约借书时长：', this.data.keepTime, this.data.keepTimeFormat);
+  keeperChange(e){
 
   },
 
+  periodPickerChange(e){
+    let month = e.detail.value[0];
+    let day = e.detail.value[1];
+    // console.log(e.detail.value);
+    this.setData({
+      keepTime: month + '个月' + day + '天',
+      keepTimeFormat: util.formatPeriod(month, day)
+    })
+    // console.log('预约借书时长：', this.data.keepTime, this.data.keepTimeFormat);
 
-  lendSubmit(e){
+  },
+
+  bookSubmit(e){
     let keeper = e.detail.value.keeper;
-    let keepTime = this.data.keepTimeFormat;
+    let keepTimeFormat = this.data.keepTimeFormat;
     console.log('所选保管人：', keeper);
-    console.log('借书时长：', keepTime)
+    console.log('借书时长：', keepTimeFormat)
     new Promise((resolve, reject) => {
       wx.request({
-        url: app.globalData.url + 'LendBook/',
+        url: app.globalData.url + 'BookOrder/',
         method: 'POST',
         header:{
           'content-type': 'application/x-www-form-urlencoded',
@@ -60,7 +62,7 @@ Page({
         data:{
           documentId: wx.getStorageSync('selectDocumentId'),
           keeper: keeper,
-          keepTime: keepTime,
+          keepTime: keepTimeFormat,
         },
         success: res => resolve(res),
         fail: err => reject(err)
@@ -68,7 +70,7 @@ Page({
     }).then(res => {
       console.log(res);
       wx.showToast({
-        title: '借阅成功！',
+        title: '预约成功！',
         icon: 'success',
         success: wx.navigateBack({
           delta: 1,
@@ -80,9 +82,6 @@ Page({
       console.log(err);
     })
 
-  },
-
-  keeperChange(e){
 
   },
 
@@ -106,7 +105,7 @@ Page({
    */
   onShow: function () {
     request.initKeeperList().then(res => {
-      console.log(res);
+      console.log('保管人列表:', res);
       let temp = [];
       for(let key in res.data){
         let attr = res.data[key];
@@ -124,6 +123,7 @@ Page({
     }).catch(err => {
       console.log(err);
     })
+
   },
 
   /**
