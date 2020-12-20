@@ -107,8 +107,15 @@ Page({
       let ownBook = temp.ownBook.length===0? '':temp.ownBook[0];
       let orderBook = temp.orderBook.length===0? '':temp.orderBook[0];
       // console.log(ownBook, orderBook);
-      let documentId = ownBook===''? orderBook.split(';')[1]:ownBook.split(';')[1];
-      wx.setStorageSync('selectDocumentId', documentId);
+      let documentId;
+      if(ownBook==='' && orderBook!==''){
+        documentId = orderBook.split(';')[1];
+        wx.setStorageSync('selectDocumentId', documentId);
+      } else if(ownBook!=='' && orderBook===''){
+        documentId = ownBook.split(';')[1];
+        wx.setStorageSync('selectDocumentId', documentId);
+      }
+      
 
       this.setData({
         keepInfo: ownBook===''? '暂无':ownBook.split(';')[1] + '借阅至' + ownBook.split(';')[2],
