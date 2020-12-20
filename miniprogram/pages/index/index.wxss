@@ -10,15 +10,16 @@
   padding: 40rpx;
 }
 
-button{
-  height: 150rpx;
-  width: 250rpx;
+.menu-item{
+  height: 200rpx;
+  width: 300rpx;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40rpx;
+  /* margin-top: 40rpx; */
   font-weight: 500;
+  border: 1rpx solid white;
 }
 
 .content{

@@ -1,1 +1,17 @@
 /* pages/keeperInfo/keeperDetail/keeperDetail.wxss */
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 20rpx 30rpx;
+  overflow-y: scroll;
+}
+
+#attr-list view{
+  width: 300rpx;
+}
+
+#operate button{
+  margin-bottom: 40rpx;
+}

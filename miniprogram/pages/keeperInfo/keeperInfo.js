@@ -50,8 +50,9 @@ Page({
         let attr = res.data[key];
         temp.push({
           name: key,
-          hasBook: attr.hasBook[0] === 'true' ? true:false,
-          hasOrder: attr.hasOrder[0] === 'true' ? true:false,
+          hasBook: attr.hasBook[0]==='true'? true:false,
+          hasOrder: attr.hasOrder[0]==='true'? true:false,
+          overDeadline: attr.overDeadline[0]==='true'? true:false,
         })
       }
 

@@ -76,7 +76,7 @@ Page({
           continue;
         } else{
           temp.push({
-            attr: util.attributeHash(key),
+            attr: util.bookAttrHash(key),
             val: util.valueHash(res.data[key])
           })
         }
@@ -105,8 +105,10 @@ Page({
     })
   },
   
-  getKeeperInfo(){
-
+  getKeeperDetail(){
+    wx.navigateTo({
+      url: '../../keeperInfo/keeperDetail/keeperDetail',
+    })
   },
 
   handleBuyer(){

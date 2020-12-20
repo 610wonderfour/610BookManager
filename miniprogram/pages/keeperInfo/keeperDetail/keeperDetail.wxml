@@ -1,2 +1,40 @@
 <!--pages/keeperInfo/keeperDetail/keeperDetail.wxml-->
-<text>pages/keeperInfo/keeperDetail/keeperDetail.wxml</text>
+<view class="container">
+  <view style="align-self:center;color:red;font-size:40rpx;font-weight:700;">保管人{{keeper}}的详细信息</view>
+
+  <view style="width:100%;position:relative;margin-top:40rpx;">
+
+  
+    <view id="attribute" style="width:50%;float:left;">
+    
+      <view id="attr-list">
+        <view style="font-weight:600;font-size:30rpx;">当前保管信息</view>
+        <view style="border:0.6px solid gray;margin-bottom:20rpx;border-radius:10rpx;">{{keepInfo}}</view>
+      </view>
+
+      <view id="attr-list">
+        <view style="font-weight:600;font-size:30rpx;">当前预约信息</view>
+        <view style="border:0.6px solid gray;margin-bottom:20rpx;border-radius:10rpx;">{{orderInfo}}</view>
+      </view>
+
+      <view id="attr-list" wx:for="{{attrList}}" wx:key="index">
+        <view style="font-weight:600;font-size:30rpx;">{{item.attr}}</view>
+        <view style="border:0.6px solid gray;margin-bottom:20rpx;border-radius:10rpx;">{{item.val}}</view>
+      </view>
+
+    </view>
+
+    <view id="operate" style="float:right;padding:30rpx 0;">
+      <button disabled="{{!hasBook}}" type="primary" bindtap="returnBook">归还图书</button>
+      <button disabled="{{!hasOrder}}" type="primary" bindtap="cancelOrder">取消预约</button>
+      <button disabled="{{!hasBook && !hasOrder}}" type="primary" bindtap="getBookDetail">查看当前保管/预约图书信息</button>
+      
+      
+
+    </view>
+
+  </view>
+
+
+
+</view>

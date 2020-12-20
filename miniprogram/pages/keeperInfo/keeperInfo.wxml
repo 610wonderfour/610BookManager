@@ -1,11 +1,7 @@
 <!--pages/keeperInfo/keeperInfo.wxml-->
 <view class="container">
-  <view style="">
-    确认预约订单
-  </view>
 
   <view style="width:100%">
-    <view style="font-size:50rpx;">请选择已注册的保管人</view>
     
     <view style="display:flex;justify-content:space-between;padding:0 40rpx;color:blue;">
       <view>姓名</view>
@@ -17,12 +13,13 @@
 
     <view wx:for="{{keeperList}}" wx:key="name" style="width:100%;height:60rpx;display:flex;flex-direction:column;align-items:center;">
 
-      <view style="width:90%;display:flex;justify-content:space-between;">
+      <view class="list" style="width:90%;display:flex;justify-content:space-between;">
         <view>{{item.name}}</view>
-        <view wx:if="{{item.hasBook}}">借书中</view>
+        <view wx:if="{{item.hasBook && !item.overDeadline}}">借书中</view>
         <view wx:if="{{item.hasOrder}}">预约中</view>
         <view wx:if="{{!item.hasBook && !item.hasOrder}}">空闲</view>
-        <view bindtap="getKeeperDetail" style="font-size:30rpx;border:0.6px solid black;" data-item="{{item}}">详情</view>
+        <view wx:if="{{item.hasBook && item.overDeadline}}">借书已逾期</view>
+        <view bindtap="getKeeperDetail" style="width:auto;font-size:30rpx;border:0.6px solid black;" data-item="{{item}}">详情</view>
       </view>
 
       <view class="separate-line2"></view>

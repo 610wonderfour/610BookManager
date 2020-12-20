@@ -17,7 +17,7 @@
     <view id="operate" style="float:right;padding:30rpx 0;">
       <button disabled="{{isLent}}" type="primary" bindtap="lendBook">图书外借</button>
       <button disabled="{{!isLent || isBooked}}" type="primary" bindtap="bookOrder">外借预约</button>
-      <button disabled="{{!isLent}}" type="primary" bindtap="getKeeperInfo">查看当前保管人信息</button>
+      <button disabled="{{!isLent}}" type="primary" bindtap="getKeeperDetail">查看当前保管人信息</button>
       <view style="font-size:30rpx;font-weight:530;color: rgb(41, 146, 41);margin-top: 30rpx;" bindtap="handleBuyer">我是该图书购买人？</view>
       
 

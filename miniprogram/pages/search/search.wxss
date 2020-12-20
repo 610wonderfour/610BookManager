@@ -38,6 +38,10 @@ form{
   width: 300rpx;
 }
 
+.list view{
+  width: 140rpx;
+}
+
 .input-item input{
   border: 1px solid bisque;
 }

@@ -2,7 +2,7 @@ module.exports = {
   parseDate(date) {
     return date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
   },
-  attributeHash(attr) {
+  bookAttrHash(attr) {
     switch(attr){
       case 'bookCopyId': return '副本号';
       case 'price': return '价格';
@@ -16,6 +16,11 @@ module.exports = {
       case 'buyer': return '购买人';
       case 'deadline': return '借阅截止日期';
       case 'booker': return '预约人';
+    }
+  },
+  keeperAttrHash(attr){
+    switch(attr){
+      
     }
   },
   valueHash(val){
