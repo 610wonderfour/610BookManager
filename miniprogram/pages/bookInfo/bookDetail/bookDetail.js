@@ -33,11 +33,10 @@ Page({
       })
     }).then(res => {
       console.log('图书属性参数', res);
+      wx.setStorageSync('selectKeeper', res.data['keeper']);
       let temp = [];
       this.setData({
         isLent: res.data['isLent'] === 'true' ? true:false,
-      })
-      this.setData({
         isBooked: res.data['isBooked'] === 'true' ? true:false,
       })
 

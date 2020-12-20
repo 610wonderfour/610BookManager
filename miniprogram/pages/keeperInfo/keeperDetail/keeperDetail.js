@@ -50,7 +50,7 @@ Page({
   cancelOrder(){
     new Promise((resolve, reject) => {
       wx.request({
-        url: app.globalData.url + 'CancleBook/',
+        url: app.globalData.url + 'CancelBook/',
         method: 'POST',
         header:{
           'content-type': 'application/x-www-form-urlencoded',
